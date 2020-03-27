@@ -5,12 +5,14 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-9 mt-2">
-        <form method="post" action="#">
+        <form method="post" action="{{route('post.create')}}">
             <div class="form-group">
                 <label for="post" class="h3">Create Post</label>
-                <textarea placeholder="What's on your mind, Achchuthan!" id="post" class="form-control bg-white text-dark" name="post" rows="3"></textarea>
+                <textarea name="body" placeholder="What's on your mind, {{Auth::user() ? Auth::user()->first_name:''}}!" id="post" class="form-control bg-white text-dark" name="post" rows="3"></textarea>
             </div>
-            <button class="btn btn-sm btn-primary btn-block">Post</button>
+            <input type="submit" class="btn btn-sm btn-primary btn-block" name="submit" value="Post">
+            <input type="hidden" value="{{Session::token()}}" name="_token">
+
         </form>
     </div>
 </div>

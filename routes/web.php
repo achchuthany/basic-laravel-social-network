@@ -36,3 +36,8 @@ Route::get('/signout',[
     'uses'=>'UserController@getSignOut',
     'as'=>'signout'
 ]);
+Route::post('/createpost',[
+    'uses'=>'PostController@postCreatePost',
+    'as'=>'post.create',
+    'middleware'=>'auth'
+]);
