@@ -37446,4 +37446,25 @@
     /******/
 });
 
-$('.toast').toast('show');
+var postId = 0;
+var postBodyElement = null;
+$('.card').find('.card-footer').find('a.edit').on('click', function(event) {
+    event.preventDefault();
+    postBodyElement = event.target.parentNode.parentNode.childNodes[1].childNodes[1];
+    var postData = postBodyElement.textContent;
+    postId = event.target.parentNode.parentNode.dataset['postid'];
+    $('#edit-body').val(postData);
+    $('#edit-modal').modal('show');
+});
+
+$('#save-modal').on('click', function(event) {
+    $.ajax({
+        method: 'POST',
+        url: urlEdit,
+        data: { body: $('#edit-body').val(), postId: postId, _token: token }
+    }).done(function(msg) {
+        $(postBodyElement).text(msg['new_body']);
+        $(postBodyElement.nextElementSibling).text(msg['updated_at']);
+        $('#edit-modal').modal('hide');
+    });
+});

@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/dashboard',[
     'as'=>'dashboard',
     'middleware'=>'auth',
-    'uses' => 'UserController@getDashboard'
+    'uses' => 'PostController@getDashboard'
 ]);
 
 Route::post('/signup',[
@@ -39,5 +39,11 @@ Route::get('/signout',[
 Route::post('/createpost',[
     'uses'=>'PostController@postCreatePost',
     'as'=>'post.create',
+    'middleware'=>'auth'
+]);
+
+Route::post('/editepost',[
+    'uses'=>'PostController@postEditPost',
+    'as'=>'post.edit',
     'middleware'=>'auth'
 ]);

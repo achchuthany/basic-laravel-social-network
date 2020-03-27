@@ -19,101 +19,49 @@
 <div class="row mt-3 justify-content-center">
     <div class="col-md-9 ">
         <div class="card-columns">
-
-            <div class="card bg-transparent mb-3 h-100">
+            @foreach($posts as $post)
+        <div class="card bg-transparent mb-3 h-100" data-postid="{{$post->id}}">
                 <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
+                <p class="card-text">{{$post->body}}</p>
+                <small class="text-muted">By {{$post->user->first_name}} on {{$post->updated_at->diffForHumans()}} </small>
                 </div>
                 <div class="card-footer justify-content-center">
                     <a  href="#" class="btn btn-sm btn-outline-primary">Like</a>
                     <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
+                    @if(Auth::user()->id == $post->user_id)
+                    <a  href="#" class="btn btn-sm btn-outline-primary edit">Edit</a>
                     <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
+                    @endif
                 </div>
             </div>
-
-            <div class="card bg-transparent mb-3 h-100">
-                <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Like</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
-
-            <div class="card bg-transparent mb-3 h-100">
-                <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's contentSome quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <a  href="#" class="btn btn-sm btn-primary">Like</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
-
-            <div class="card bg-transparent mb-3 h-100">
-                <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Like</a>
-                    <a  href="#" class="btn btn-sm btn-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
-
-            <div class="card bg-transparent mb-3 h-100">
-                <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <a  href="#" class="btn btn-sm btn-primary">Like</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
-
-
-            <div class="card bg-transparent mb-3 h-100">
-                <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's contentSome quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Like</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
-
-
-            <div class="card bg-transparent mb-3 h-100">
-                <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content</p>
-                <small class="text-muted float-right"> Last updated 3 mins ago</small>
-                </div>
-                <div class="card-footer justify-content-center">
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Like</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
-                    <a  href="#" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog" id="edit-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div class="form-group">
+                    <textarea name="edit-body" id="edit-body" class="form-control bg-white text-dark"  rows="3"></textarea>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="save-modal" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+   var urlEdit  = "{{route('post.edit')}}" ;
+   var token    =  "{{Session::token()}}" ; 
+   </script>
 @endsection
