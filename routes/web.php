@@ -36,14 +36,19 @@ Route::get('/signout',[
     'uses'=>'UserController@getSignOut',
     'as'=>'signout'
 ]);
-Route::post('/createpost',[
+Route::post('/create/post',[
     'uses'=>'PostController@postCreatePost',
     'as'=>'post.create',
     'middleware'=>'auth'
 ]);
 
-Route::post('/editepost',[
+Route::post('/edit/post',[
     'uses'=>'PostController@postEditPost',
     'as'=>'post.edit',
     'middleware'=>'auth'
+]);
+Route::get('/delete/post/{post_id}',[
+    'uses'=>'PostController@getDeletePost',
+    'as'=>'post.delete',
+    'middleware' => 'auth'
 ]);

@@ -30,7 +30,7 @@
                     <a  href="#" class="btn btn-sm btn-outline-primary">Dislike</a>
                     @if(Auth::user()->id == $post->user_id)
                     <a  href="#" class="btn btn-sm btn-outline-primary edit">Edit</a>
-                    <a  href="#" class="btn btn-sm btn-outline-danger">Delete</a>
+                    <a  href="{{ route('post.delete',['post_id'=>$post->id]) }}"  class="btn btn-sm btn-outline-danger">Delete</a>
                     @endif
                 </div>
             </div>
