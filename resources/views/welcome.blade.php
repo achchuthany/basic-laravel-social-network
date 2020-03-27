@@ -30,7 +30,7 @@
           </div>
           <div class="form-group col-md-12">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control form-control-sm shadow-sm rounded" id="exampleInputPassword1">
+            <input type="password" name="password" class="form-control form-control-sm shadow-sm rounded" id="exampleInputPassword1">
           </div>
           <div class="form-group col-md-12">
               <button type="submit" class="btn btn-sm btn-primary float-right shadow-sm rounded">Sign Up</button>

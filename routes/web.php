@@ -19,10 +19,15 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[
     'as'=>'dashboard',
-    'middleware'=>'auth'
+    'middleware'=>'auth',
+    'uses' => 'UserController@getDashboard'
 ]);
 
 Route::post('signup',[
     'uses'=>'UserController@postSignUp',
     'as'=>'signup'
+]);
+Route::post('signin',[
+    'uses'=>'UserController@postSignIn',
+    'as'=>'signin'
 ]);

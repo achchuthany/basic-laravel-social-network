@@ -10,6 +10,7 @@
     <body>
       @include('includes.header')
           <div class="container mb-2">
+            @include('includes.error')
             @yield('content')
           </div>
         <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
