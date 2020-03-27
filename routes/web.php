@@ -23,11 +23,16 @@ Route::get('/dashboard',[
     'uses' => 'UserController@getDashboard'
 ]);
 
-Route::post('signup',[
+Route::post('/signup',[
     'uses'=>'UserController@postSignUp',
     'as'=>'signup'
 ]);
-Route::post('signin',[
+Route::post('/signin',[
     'uses'=>'UserController@postSignIn',
     'as'=>'signin'
+]);
+
+Route::get('/signout',[
+    'uses'=>'UserController@getSignOut',
+    'as'=>'signout'
 ]);

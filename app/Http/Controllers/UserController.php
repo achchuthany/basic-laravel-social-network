@@ -39,4 +39,9 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
+    public function getSignOut(){
+        Auth::logout();
+        return redirect()->route('welcome');
+    }
 }
